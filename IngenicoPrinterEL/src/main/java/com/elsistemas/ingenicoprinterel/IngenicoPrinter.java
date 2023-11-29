@@ -16,7 +16,6 @@ import com.usdk.apiservice.aidl.vectorprinter.VectorPrinterData;
 public class IngenicoPrinter {
     private final Context context;
     private DeviceHelper deviceHelper = DeviceHelper.me();
-
     private UVectorPrinter vectorPrinter;
 
     public IngenicoPrinter(Context context) {
@@ -49,6 +48,14 @@ public class IngenicoPrinter {
     }
 
     public void addText(String text) throws RemoteException {
+        vectorPrinter.addText(null, text);
+
+        vectorPrinter.feedPix(50);
+    }
+
+    public void addTextByte(byte[] textByte) throws RemoteException {
+        String text = new String(textByte);
+
         vectorPrinter.addText(null, text);
 
         vectorPrinter.feedPix(50);
